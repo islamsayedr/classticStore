@@ -1,3 +1,4 @@
+import { FooterComponent } from './Components/footer.component';
 import { HeaderComponent } from './Components/header.component';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -5,11 +6,13 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   standalone: true,
 
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   template: `
-    <header></header>
+    <Header></Header>
     <router-outlet />
-    <h1>footer</h1>
+    <!-- <h1>footer</h1> -->
+    <!-- <footer></footer> -->
+    <Footer></Footer>
   `,
   styles: [``],
 })
