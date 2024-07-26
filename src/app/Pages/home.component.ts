@@ -1,11 +1,15 @@
-import { H2Component } from '../Components/h2.component';
+import { ProductsService } from './../../Services/products.service';
+import { CarouselComponent } from './../Components/carousel.component';
+import { H2Component } from '../Components/typography/h2.component';
 import { Component } from '@angular/core';
 import { CardComponent } from '../Components/card.component';
+import { NgFor } from '@angular/common';
+import { Iproduct } from '../../Models/iproduct';
 
 @Component({
   selector: 'home',
   standalone: true,
-  imports: [CardComponent, H2Component],
+  imports: [CardComponent, H2Component, CarouselComponent, NgFor],
   template: `
     <main>
       <section class="py-8">
@@ -15,6 +19,7 @@ import { CardComponent } from '../Components/card.component';
             alt="banner"
             class="w-full flex object-cover h-[500px]"
           />
+          <!-- <Carousel /> -->
         </div>
       </section>
       <section class="py-8">
@@ -24,14 +29,7 @@ import { CardComponent } from '../Components/card.component';
           <div
             class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 "
           >
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <Card *ngFor="let item of list" [data]="item" />
           </div>
         </div>
       </section>
@@ -41,14 +39,7 @@ import { CardComponent } from '../Components/card.component';
           <div
             class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 "
           >
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <Card *ngFor="let item of list" [data]="item" />
           </div>
         </div>
       </section>
@@ -56,4 +47,9 @@ import { CardComponent } from '../Components/card.component';
   `,
   styles: [``],
 })
-export class HomeComponent {}
+export class HomeComponent {
+  list: Iproduct[] = [];
+  constructor(private ProductsService: ProductsService) {
+    this.list = this.ProductsService.getProducts();
+  }
+}

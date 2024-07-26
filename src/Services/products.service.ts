@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Iproduct } from './../Modules/iproduct';
+import { Iproduct } from '../Models/iproduct';
 
 @Injectable({
   providedIn: 'root',
@@ -8,33 +8,43 @@ export class ProductsService {
   private products: Iproduct[] = [
     {
       id: 1,
-      name: 'Product 1',
+      name: 'بنطلون جابردين احمر',
       price: 19.99,
-      description: 'Description of Product 1',
-      image: 'https://via.placeholder.com/150',
-      size: ['S', 'M', 'L'],
-      color: 'red', // Add this line
+      description:
+        'بنطلون جابردين قماشة نضيفة خالية من المواد الضارة, فرز رقم 1',
+      image: '/pants.png',
+      size: ['30', '32', '34', '36', '38', '40', '42', '44', '46', '48', '50'],
       quantity: 10,
     },
     {
       id: 2,
-      name: 'Product 2',
+      name: 'بنطلون جابردين رصاصى',
       price: 29.99,
-      description: 'Description of Product 2',
-      image: 'https://via.placeholder.com/150',
-      size: ['M', 'L', 'XL'],
-      color: 'blue', // Add this line
+      description:
+        'بنطلون جابردين قماشة نضيفة خالية من المواد الضارة, فرز رقم 1',
+      image: '/pants.png',
+      size: ['30', '32', '34', '36', '38', '40', '42', '44', '46', '48', '50'],
       quantity: 5,
     },
     {
       id: 3,
-      name: 'Product 3',
+      name: 'بنطلون جابردين اسود',
       price: 39.99,
-      description: 'Description of Product 3',
-      image: 'https://via.placeholder.com/150',
-      size: ['L', 'XL', 'XXL'],
-      color: 'green', // Add this line
+      description:
+        'بنطلون جابردين قماشة نضيفة خالية من المواد الضارة, فرز رقم 1',
+      image: '/pants.png',
+      size: ['30', '32', '34', '36', '38', '40', '42', '44', '46', '48', '50'],
       quantity: 8,
+    },
+    {
+      id: 4,
+      name: 'بنطلون جابردين رصاصى',
+      price: 29.99,
+      description:
+        'بنطلون جابردين قماشة نضيفة خالية من المواد الضارة, فرز رقم 1',
+      image: '/pants.png',
+      size: ['30', '32', '34', '36', '38', '40', '42', '44', '46', '48', '50'],
+      quantity: 5,
     },
   ];
 
@@ -68,10 +78,5 @@ export class ProductsService {
   // Delete a product by ID
   deleteProduct(id: number): void {
     this.products = this.products.filter((product) => product.id !== id);
-  }
-
-  // Filter products by color
-  getProductsByColor(color: string): Iproduct[] {
-    return this.products.filter((product) => product.color === color);
   }
 }

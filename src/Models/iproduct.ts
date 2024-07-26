@@ -5,6 +5,5 @@ export interface Iproduct {
   description: string;
   image: string;
   size: string[];
-  color: string;
   quantity: number;
 }

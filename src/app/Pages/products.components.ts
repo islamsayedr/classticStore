@@ -1,8 +1,8 @@
 import { ProductsService } from './../../Services/products.service';
-import { H1Component } from './../Components/h1.component';
+import { H1Component } from '../Components/typography/h1.component';
 import { CardComponent } from './../Components/card.component';
 import { Component } from '@angular/core';
-import { Iproduct } from '../../Modules/iproduct';
+import { Iproduct } from '../../Models/iproduct';
 import { NgFor } from '@angular/common';
 
 @Component({

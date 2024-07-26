@@ -4,7 +4,28 @@ import { Component } from '@angular/core';
   selector: 'offers',
   standalone: true,
   imports: [],
-  template: `<h1>offers Component</h1>`,
+  template: `
+    <main>
+      <section class="py-8">
+        <div class="container m-auto">
+          <img
+            src="/image.png"
+            alt="banner"
+            class="w-full flex object-cover h-[500px]"
+          />
+        </div>
+      </section>
+      <section class="py-8">
+        <div class="container m-auto">
+          <img
+            src="/image.png"
+            alt="banner"
+            class="w-full flex object-cover h-[500px]"
+          />
+        </div>
+      </section>
+    </main>
+  `,
   styles: [``],
 })
 export class OffersComponent {}
