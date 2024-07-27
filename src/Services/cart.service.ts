@@ -6,23 +6,19 @@ import { CartProduct } from '../Models/cartProduct';
 })
 export class CartService implements OnChanges {
   private items: CartProduct[] = [];
-  totalPrice = 0;
   constructor() {}
   addItem(product: CartProduct) {
     this.items.push(product);
   }
-  removeItem(itemID: number) {
-    this.items = this.items.filter((item) => item.id !== itemID);
+  removeItem(itemID: number, itemSize: string) {
+    this.items = this.items.filter((item) => {
+      return !(item.id === itemID && item.size === itemSize);
+    });
   }
 
   getCartItems() {
     return this.items;
   }
-  getTotalPrice() {
-    this.items.forEach((item) => {
-      this.totalPrice += item.price * item.quantity;
-    });
-    return this.totalPrice;
-  }
+
   ngOnChanges(changes: SimpleChanges): void {}
 }

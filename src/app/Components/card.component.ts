@@ -35,15 +35,25 @@ import { FormsModule } from '@angular/forms';
             {{ data.description }}
           </p>
         </div>
-        <div class="flex flex-row gap-2">
-          <select
-            name="size"
-            [(ngModel)]="chosenSize"
-            (change)="newSize()"
-            class="flex bg-gray-700 px-2 rounded-lg w-[72px] appearance-none text-center "
-          >
-            <option *ngFor="let s of data.size" [value]="s">{{ s }}</option>
-          </select>
+        <div class="flex flex-row gap-2 mt-[16px]">
+          <div class="relative flex flex-col ">
+            <label
+              for="size"
+              class="absolute top-[-20px] text-[11px] text-gray-100 bg-yellow-800 p-1 rounded-md"
+            >
+              المقاس</label
+            >
+            <select
+              name="size"
+              [(ngModel)]="chosenSize"
+              (change)="newSize()"
+              class="w-[72px] pt-3 pb-2 flex bg-gray-700 px-2 rounded-lg  appearance-none text-center cursor-pointer"
+            >
+              <option *ngFor="let s of data.size" [value]="s">
+                {{ s }}
+              </option>
+            </select>
+          </div>
           <button
             (click)="addToCart()"
             #cartBtn
@@ -84,8 +94,9 @@ export class CardComponent {
       price: this.data.price,
       size: this.chosenSize,
       sizes: this.data.size,
-      quantity: 0,
+      quantity: 1,
       image: this.data.image,
+      availableQ: this.data.quantity,
     });
     this.addBtn.nativeElement.disabled = true;
   }

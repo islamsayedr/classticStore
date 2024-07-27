@@ -2,7 +2,7 @@ import { H2Component } from './../Components/typography/h2.component';
 import { NgFor, CurrencyPipe, NgIf, NgClass } from '@angular/common';
 import { CartProduct } from './../../Models/cartProduct';
 import { CartService } from './../../Services/cart.service';
-import { Component, OnChanges } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { H1Component } from '../Components/typography/h1.component';
 import { FormsModule } from '@angular/forms';
 import { HCardComponent } from '../Components/hcard.component';
@@ -39,11 +39,15 @@ import { LucideAngularModule } from 'lucide-angular';
             ></lucide-icon>
             لا يوجد منتجات فى السلة...
           </div>
-          <HCard *ngFor="let item of items" [item]="item" />
+          <HCard
+            *ngFor="let item of items"
+            [item]="item"
+            (removeBtnClicked)="removeItem($event)"
+          />
           <hr />
           <div class="flex justify-between">
             <p class="text-lg">
-              السعر الاجمالى: {{ total | currency : 'EGP ' }}
+              السعر الاجمالى: {{ totalPrice | currency : 'EGP ' }}
             </p>
             <p class="text-lg">عدد المنتجات: {{ items.length }}</p>
           </div>
@@ -59,15 +63,26 @@ import { LucideAngularModule } from 'lucide-angular';
   `,
   styles: [``],
 })
-export class CartComponent implements OnChanges {
+export class CartComponent implements OnChanges, OnInit {
   items: CartProduct[] = [];
-  total = 0;
+  totalPrice = 0;
   constructor(private CartService: CartService) {
     this.items = this.CartService.getCartItems();
-    this.total = this.CartService.getTotalPrice();
   }
-  ngOnChanges(): void {
+  ngOnInit(): void {
+    this.updateTotalPrice();
+  }
+  ngOnChanges(): void {}
+
+  updateTotalPrice() {
+    this.totalPrice = 0;
+    this.items.forEach((item) => {
+      this.totalPrice += item.price * item.quantity;
+    });
+  }
+  removeItem({ itemID, itemSize }: { itemID: number; itemSize: string }) {
+    this.CartService.removeItem(itemID, itemSize);
     this.items = this.CartService.getCartItems();
-    this.total = this.CartService.getTotalPrice();
+    this.updateTotalPrice();
   }
 }

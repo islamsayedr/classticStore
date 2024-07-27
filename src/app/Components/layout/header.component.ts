@@ -1,5 +1,11 @@
 import { NgClass, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 @Component({
@@ -10,12 +16,12 @@ import { LucideAngularModule } from 'lucide-angular';
     <div
       class="flex bg-gray-800 text-white h-[64px] px-4 sm:px-8 items-center justify-between"
     >
-      <lucide-icon
-        name="Menu"
-        [size]="24"
-        [strokeWidth]="1.5"
-        class="md:hidden"
-      ></lucide-icon>
+      <span
+        class="md:hidden p-2 hover:bg-gray-700 rounded-lg"
+        (click)="handleClickMenu()"
+      >
+        <lucide-icon name="Menu" [size]="24" [strokeWidth]="1.5"></lucide-icon>
+      </span>
 
       <a routerLink="/home" class="font-black text-xl">👖 كلاسيك ستور</a>
 
@@ -37,7 +43,7 @@ import { LucideAngularModule } from 'lucide-angular';
         <lucide-icon name="ShoppingBasket" [size]="20"></lucide-icon>
         <span class="hidden sm:inline-block">السلة</span>
         <span
-          class="hidden absolute top-2 right-2 h-[8px] w-[8px] bg-red-400 rounded-full"
+          class=" absolute top-2 right-2 h-[8px] w-[8px] bg-red-400 rounded-full"
           [ngClass]="{ flex: itemsNum > 0 }"
         ></span>
       </a>
@@ -46,11 +52,17 @@ import { LucideAngularModule } from 'lucide-angular';
   styles: [``],
 })
 export class HeaderComponent {
+  @Output() openSideBar: EventEmitter<boolean>;
   navLinks = [
     { name: 'الرئيسية', URL: '/home' },
     { name: 'قائمة المنتجات', URL: '/products' },
     { name: 'عروض وخصومات', URL: '/offers' },
   ];
   itemsNum: number = 0;
-  constructor() {}
+  constructor() {
+    this.openSideBar = new EventEmitter<boolean>();
+  }
+  handleClickMenu() {
+    this.openSideBar.emit(true);
+  }
 }

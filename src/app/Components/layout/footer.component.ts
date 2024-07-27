@@ -9,7 +9,9 @@ import { Component } from '@angular/core';
       <div class=" px-6 py-8 mx-auto">
         <hr class="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
 
-        <div class="flex flex-col items-center sm:flex-row sm:justify-between">
+        <div
+          class="flex flex-col items-center sm:flex-row sm:justify-between gap-4"
+        >
           <p class="text-sm text-gray-500 dark:text-gray-300">
             © جميع الحقوق محفوظة 2024.
           </p>

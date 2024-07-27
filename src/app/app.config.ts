@@ -12,6 +12,11 @@ import {
   Menu,
   DeleteIcon,
   PackageSearch,
+  Info,
+  HelpCircle,
+  UserCircle,
+  Plus,
+  Minus,
 } from 'lucide-angular';
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,6 +28,11 @@ export const appConfig: ApplicationConfig = {
         Menu,
         DeleteIcon,
         PackageSearch,
+        Info,
+        HelpCircle,
+        UserCircle,
+        Plus,
+        Minus,
       })
     ),
   ],

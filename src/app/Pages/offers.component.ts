@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
           <img
             src="/image.png"
             alt="banner"
-            class="w-full flex object-cover h-[500px]"
+            class="w-full flex object-cover h-[500px] rounded-lg"
           />
         </div>
       </section>
@@ -20,7 +20,7 @@ import { Component } from '@angular/core';
           <img
             src="/image.png"
             alt="banner"
-            class="w-full flex object-cover h-[500px]"
+            class="w-full flex object-cover h-[500px] rounded-lg"
           />
         </div>
       </section>
