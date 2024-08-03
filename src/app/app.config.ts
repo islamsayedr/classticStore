@@ -17,6 +17,7 @@ import {
   UserCircle,
   Plus,
   Minus,
+  Trash,
 } from 'lucide-angular';
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,6 +34,7 @@ export const appConfig: ApplicationConfig = {
         UserCircle,
         Plus,
         Minus,
+        Trash,
       })
     ),
   ],

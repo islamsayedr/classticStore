@@ -1,8 +1,10 @@
+import { CartService } from './../../../Services/cart.service';
 import { NgClass, NgFor } from '@angular/common';
 import {
   Component,
   EventEmitter,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -43,8 +45,8 @@ import { LucideAngularModule } from 'lucide-angular';
         <lucide-icon name="ShoppingBasket" [size]="20"></lucide-icon>
         <span class="hidden sm:inline-block">السلة</span>
         <span
-          class=" absolute top-2 right-2 h-[8px] w-[8px] bg-red-400 rounded-full"
-          [ngClass]="{ flex: itemsNum > 0 }"
+          class="hidden absolute top-2 right-2 h-[8px] w-[8px] bg-red-400 rounded-full"
+          [ngClass]="{ flex: itemsNum < 0 }"
         ></span>
       </a>
     </div>
@@ -58,7 +60,7 @@ export class HeaderComponent {
     { name: 'قائمة المنتجات', URL: '/products' },
     { name: 'عروض وخصومات', URL: '/offers' },
   ];
-  itemsNum: number = 0;
+  itemsNum: number = 2;
   constructor() {
     this.openSideBar = new EventEmitter<boolean>();
   }

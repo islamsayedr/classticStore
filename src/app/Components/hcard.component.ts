@@ -82,9 +82,9 @@ import { NgFor, CurrencyPipe, NgClass, NgIf } from '@angular/common';
         </span>
         <span
           (click)="deleteFromCart(item.id, item.size)"
-          class=" cursor-pointer p-3 bg-red-300 h-fit rounded-full"
+          class=" cursor-pointer p-3 bg-red-200 h-fit rounded-full"
         >
-          <lucide-icon name="DeleteIcon" [size]="24" color="red"></lucide-icon>
+          <lucide-icon name="Trash" [size]="24" color="red"></lucide-icon>
         </span>
       </div>
     </div>

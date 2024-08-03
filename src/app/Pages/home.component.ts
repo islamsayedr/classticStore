@@ -1,12 +1,15 @@
+import { AdsService } from './../../Services/ads.service';
 import { H3Component } from './../Components/typography/h3.component';
 import { ProductsService } from './../../Services/products.service';
 import { CarouselComponent } from './../Components/carousel.component';
 import { H2Component } from '../Components/typography/h2.component';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CardComponent } from '../Components/card.component';
-import { NgFor } from '@angular/common';
+import { NgFor, NgClass } from '@angular/common';
 import { Iproduct } from '../../Models/iproduct';
 import { LucideAngularModule } from 'lucide-angular';
+import { iAd } from '../../Models/iAd';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'home',
@@ -18,16 +21,25 @@ import { LucideAngularModule } from 'lucide-angular';
     NgFor,
     LucideAngularModule,
     H3Component,
+    NgFor,
+    NgClass,
   ],
   template: `
     <main>
       <section class="py-8">
         <div class="container m-auto">
           <img
-            src="/image.png"
+            [src]="currentAd.cover"
             alt="banner"
-            class="w-full flex object-cover h-[500px] rounded-lg"
+            class="w-full flex object-cover sm:h-[500px] aspect-[12/7] rounded-lg"
           />
+          <div class="flex p-2 gap-2 items-center justify-center ">
+            <div
+              *ngFor="let _ of [].constructor(adsNum); let i = index"
+              class="flex p-1 bg-white rounded-full "
+              [ngClass]="{ 'bg-yellow-300': i === currentAd.id }"
+            ></div>
+          </div>
           <!-- <Carousel /> -->
         </div>
       </section>
@@ -69,7 +81,7 @@ import { LucideAngularModule } from 'lucide-angular';
   `,
   styles: [``],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
   whyUs = [
     {
       title: 'امكانية الرفض وعدم الاستلام',
@@ -87,8 +99,24 @@ export class HomeComponent {
       iconName: 'UserCircle',
     },
   ];
+  // ----------------
+  constructor(
+    private ProductsService: ProductsService,
+    private AdsService: AdsService
+  ) {}
   popularList: Iproduct[] = [];
-  constructor(private ProductsService: ProductsService) {
+  currentAd: iAd = this.AdsService.ads[0];
+  adsNum: number = 0;
+  adSub!: Subscription;
+  ngOnInit(): void {
     this.popularList = this.ProductsService.getProducts();
+    this.adsNum = this.AdsService.adsNum;
+    this.adSub = this.AdsService.getAd(5).subscribe((data) => {
+      // console.log(data);
+      this.currentAd = data;
+    });
+  }
+  ngOnDestroy(): void {
+    this.adSub.unsubscribe();
   }
 }
