@@ -4,6 +4,7 @@ import { OffersComponent } from './Pages/offers.component';
 import { ProductsComponent } from './Pages/products.component';
 import { CartComponent } from './Pages/cart.component';
 import { LayoutComponent } from './Components/layout/layout.component';
+import { authGuard } from '../Gaurds/auth.guard';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,7 @@ export const routes: Routes = [
       {
         path: 'cart',
         component: CartComponent,
+        canActivate: [authGuard],
       },
     ],
   },

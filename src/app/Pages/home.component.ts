@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     {
       title: 'خدمة عملاء متاحة دائمة',
       des: 'يمكنك التواصل معنا عبر الهاتف او الواتس اب للاستفسار او الشكاوة, فقط اضغط على زر الواتس اب فى اسفل الصفحةز ',
-      iconName: 'HelpCircle',
+      iconName: 'MessageCircleQuestion',
     },
     {
       title: 'العميل دائما اولا',

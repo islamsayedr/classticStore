@@ -9,14 +9,15 @@ import {
   LucideAngularModule,
   ShoppingBasket,
   Menu,
-  DeleteIcon,
   PackageSearch,
   Info,
-  HelpCircle,
   UserCircle,
   Plus,
   Minus,
   Trash,
+  LogIn,
+  LogOut,
+  MessageCircleQuestion,
 } from 'lucide-angular';
 
 export const appConfig: ApplicationConfig = {
@@ -27,14 +28,15 @@ export const appConfig: ApplicationConfig = {
       LucideAngularModule.pick({
         ShoppingBasket,
         Menu,
-        DeleteIcon,
         PackageSearch,
         Info,
-        HelpCircle,
         UserCircle,
         Plus,
         Minus,
         Trash,
+        LogIn,
+        LogOut,
+        MessageCircleQuestion,
       })
     ),
   ],

@@ -1,3 +1,4 @@
+import { AuthService } from './../../../Services/auth.service';
 import { CartService } from './../../../Services/cart.service';
 import { NgClass, NgFor } from '@angular/common';
 import {
@@ -9,7 +10,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { LucideAngularModule } from 'lucide-angular';
+import { GalleryThumbnails, LucideAngularModule } from 'lucide-angular';
 @Component({
   selector: 'Header',
   standalone: true,
@@ -36,24 +37,39 @@ import { LucideAngularModule } from 'lucide-angular';
           >{{ link.name }}</a
         >
       </div>
-
-      <a
-        routerLink="/cart"
-        routerLinkActive="bg-yellow-900 "
-        class="relative flex items-top px-4 py-3 sm:pt-3 sm:pb-2 bg-gray-700 text-yellow-500 rounded-xl hover:bg-gray-600 font-medium text-md gap-2"
-      >
-        <lucide-icon name="ShoppingBasket" [size]="20"></lucide-icon>
-        <span class="hidden sm:inline-block">السلة</span>
-        <span
-          class=" absolute top-2 right-2 h-[8px] w-[8px] bg-red-400 rounded-full"
-          [hidden]="!(itemsNum > 0)"
-        ></span>
-      </a>
+      <div class="flex gap-2">
+        <a
+          routerLink="/cart"
+          routerLinkActive="bg-yellow-900 "
+          class="relative flex items-top px-4 py-3 sm:pt-3 sm:pb-2 bg-gray-700 text-yellow-500 rounded-xl hover:bg-gray-600 font-medium text-md gap-2"
+        >
+          <lucide-icon name="ShoppingBasket" [size]="20"></lucide-icon>
+          <span class="hidden sm:inline-block">السلة</span>
+          <span
+            class=" absolute top-2 right-2 h-[8px] w-[8px] bg-red-400 rounded-full"
+            [hidden]="!(itemsNum > 0)"
+          ></span>
+        </a>
+        <button
+          (click)="login()"
+          [hidden]="isUserLoged"
+          class="h-[44px] px-3 bg-yellow-200 text-yellow-900 rounded-full "
+        >
+          <lucide-icon name="LogIn" [size]="20"></lucide-icon>
+        </button>
+        <button
+          (click)="logout()"
+          [hidden]="!isUserLoged"
+          class="h-[44px] px-3 bg-red-200 text-yellow-900 rounded-full"
+        >
+          <lucide-icon name="LogOut" [size]="20"></lucide-icon>
+        </button>
+      </div>
     </div>
   `,
   styles: [``],
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit {
   @Output() openSideBar: EventEmitter<boolean>;
   navLinks = [
     { name: 'الرئيسية', URL: '/home' },
@@ -61,7 +77,11 @@ export class HeaderComponent implements OnInit, OnChanges {
     { name: 'عروض وخصومات', URL: '/offers' },
   ];
   itemsNum: number = 0;
-  constructor(private CartService: CartService) {
+  isUserLoged: boolean = false;
+  constructor(
+    private CartService: CartService,
+    private AuthService: AuthService
+  ) {
     this.openSideBar = new EventEmitter<boolean>();
   }
   handleClickMenu() {
@@ -71,6 +91,16 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.CartService.getItemsNum.subscribe((num) => {
       this.itemsNum = num;
     });
+    this.AuthService.isUserLogedIn.subscribe((status) => {
+      this.isUserLoged = status;
+    });
   }
-  ngOnChanges(): void {}
+  login() {
+    this.AuthService.login('islamsayedr@Gmail.com', '123456');
+    console.log(this.isUserLoged);
+  }
+  logout() {
+    this.AuthService.logout();
+    console.log(this.isUserLoged);
+  }
 }
