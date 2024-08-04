@@ -26,7 +26,7 @@ import { NgFor, CurrencyPipe, NgClass, NgIf } from '@angular/common';
         class="h-[128px] w-[128px] object-cover rounded-lg"
       />
       <div class="flex-1 flex  flex-col justify-between">
-        <H3 [text]="item.name"></H3>
+        <H3>{{ item.name }} </H3>
         <div class="flex gap-6 w-full">
           <div class="relative  flex flex-col ">
             <label
@@ -38,7 +38,7 @@ import { NgFor, CurrencyPipe, NgClass, NgIf } from '@angular/common';
             <select
               name="size"
               [(ngModel)]="item.size"
-              class="flex bg-gray-600 p-2 rounded-lg w-[72px] appearance-none text-center "
+              class="flex bg-gray-600 p-2 rounded-lg w-[72px] appearance-none text-center cursor-pointer"
             >
               <option *ngFor="let s of item.sizes" [value]="s">
                 {{ s }}
@@ -63,13 +63,13 @@ import { NgFor, CurrencyPipe, NgClass, NgIf } from '@angular/common';
               >لقد وصلت للحد الاقصى من المنتجات المتاحة</span
             >
             <span
-              (click)="increaseQ()"
+              (click)="increaseQ(item.id)"
               class="absolute top-[4px] right-[8px] p-1 bg-gray-500 rounded-full cursor-pointer"
             >
               <lucide-icon name="Plus" [size]="24"></lucide-icon>
             </span>
             <span
-              (click)="decreaseQ()"
+              (click)="decreaseQ(item.id)"
               class="absolute top-[4px] right-[92px] p-1 bg-gray-500 rounded-full cursor-pointer"
               ><lucide-icon name="Minus" [size]="24"></lucide-icon
             ></span>
@@ -82,9 +82,9 @@ import { NgFor, CurrencyPipe, NgClass, NgIf } from '@angular/common';
         </span>
         <span
           (click)="deleteFromCart(item.id, item.size)"
-          class=" cursor-pointer p-3 bg-red-200 h-fit rounded-full"
+          class="  p-3 bg-red-200 text-red-600 hover:bg-red-600 hover:text-white h-fit rounded-full cursor-pointer"
         >
-          <lucide-icon name="Trash" [size]="24" color="red"></lucide-icon>
+          <lucide-icon name="Trash" [size]="24"></lucide-icon>
         </span>
       </div>
     </div>
@@ -100,18 +100,20 @@ export class HCardComponent {
   deleteFromCart(itemID: number, itemSize: string) {
     this.removeBtnClicked.emit({ itemID, itemSize });
   }
-  increaseQ() {
-    if (this.item.quantity < this.item.availableQ) {
-      this.item.quantity += 1;
-    } else {
-      this.item.quantity = this.item.availableQ;
-    }
+  increaseQ(id: number) {
+    // if (this.item.quantity < this.item.availableQ) {
+    //   this.item.quantity += 1;
+    // } else {
+    //   this.item.quantity = this.item.availableQ;
+    // }
+    this.CartService.increaseQuant(id);
   }
-  decreaseQ() {
-    if (this.item.quantity > 1) {
-      this.item.quantity -= 1;
-    } else {
-      this.item.quantity = 1;
-    }
+  decreaseQ(id: number) {
+    // if (this.item.quantity > 1) {
+    //   this.item.quantity -= 1;
+    // } else {
+    //   this.item.quantity = 1;
+    // }
+    this.CartService.decreaseQuant(id);
   }
 }

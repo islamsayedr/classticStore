@@ -4,9 +4,11 @@ import { Component, Input } from '@angular/core';
   selector: 'H3',
   standalone: true,
   imports: [],
-  template: ` <h3 class="font-semibold text-xl pb-2">{{ text }}</h3> `,
+  template: `
+    <h3 class="font-semibold text-xl pb-2">
+      <ng-content />
+    </h3>
+  `,
   styles: [``],
 })
-export class H3Component {
-  @Input() text: string = 'عنوان3';
-}
+export class H3Component {}

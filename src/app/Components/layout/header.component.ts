@@ -45,26 +45,32 @@ import { LucideAngularModule } from 'lucide-angular';
         <lucide-icon name="ShoppingBasket" [size]="20"></lucide-icon>
         <span class="hidden sm:inline-block">السلة</span>
         <span
-          class="hidden absolute top-2 right-2 h-[8px] w-[8px] bg-red-400 rounded-full"
-          [ngClass]="{ flex: itemsNum < 0 }"
+          class=" absolute top-2 right-2 h-[8px] w-[8px] bg-red-400 rounded-full"
+          [hidden]="!(itemsNum > 0)"
         ></span>
       </a>
     </div>
   `,
   styles: [``],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnChanges {
   @Output() openSideBar: EventEmitter<boolean>;
   navLinks = [
     { name: 'الرئيسية', URL: '/home' },
     { name: 'قائمة المنتجات', URL: '/products' },
     { name: 'عروض وخصومات', URL: '/offers' },
   ];
-  itemsNum: number = 2;
-  constructor() {
+  itemsNum: number = 0;
+  constructor(private CartService: CartService) {
     this.openSideBar = new EventEmitter<boolean>();
   }
   handleClickMenu() {
     this.openSideBar.emit(true);
   }
+  ngOnInit(): void {
+    this.CartService.getItemsNum.subscribe((num) => {
+      this.itemsNum = num;
+    });
+  }
+  ngOnChanges(): void {}
 }

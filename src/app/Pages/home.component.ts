@@ -70,7 +70,7 @@ import { Subscription } from 'rxjs';
                 ></lucide-icon>
               </span>
               <div class="flex flex-col">
-                <H3 [text]="item.title"></H3>
+                <H3>{{ item.title }} </H3>
                 <p class="text-gray-400">{{ item.des }}</p>
               </div>
             </div>
@@ -111,7 +111,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.popularList = this.ProductsService.getProducts();
     this.adsNum = this.AdsService.adsNum;
-    this.adSub = this.AdsService.getAd(5).subscribe((data) => {
+    this.adSub = this.AdsService.getAd(3).subscribe((data) => {
       // console.log(data);
       this.currentAd = data;
     });

@@ -1,6 +1,6 @@
-import { ProductsService } from './../../Services/products.service';
+import { ProductsService } from '../../Services/products.service';
 import { H1Component } from '../Components/typography/h1.component';
-import { CardComponent } from './../Components/card.component';
+import { CardComponent } from '../Components/card.component';
 import { Component } from '@angular/core';
 import { Iproduct } from '../../Models/iproduct';
 import { NgFor } from '@angular/common';
@@ -12,7 +12,7 @@ import { NgFor } from '@angular/common';
   template: `
     <main>
       <div class="container m-auto">
-        <H1 text="قائمة المنتجات"></H1>
+        <H1>قائمة المنتجات</H1>
         <div
           class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 "
         >

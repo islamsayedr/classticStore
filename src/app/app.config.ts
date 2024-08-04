@@ -1,11 +1,10 @@
+import { routes } from './app.routes';
+import { provideRouter } from '@angular/router';
 import {
   ApplicationConfig,
   provideZoneChangeDetection,
   importProvidersFrom,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
 import {
   LucideAngularModule,
   ShoppingBasket,
@@ -19,6 +18,7 @@ import {
   Minus,
   Trash,
 } from 'lucide-angular';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),

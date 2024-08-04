@@ -25,7 +25,7 @@ import { LucideAngularModule } from 'lucide-angular';
   template: `
     <main>
       <div class="container m-auto">
-        <H1 text="السلة"></H1>
+        <H1>السلة</H1>
         <div class=" flex flex-col gap-4  bg-gray-800 rounded-lg p-4">
           <H2 text="محتوى السلة"></H2>
           <div
@@ -63,26 +63,24 @@ import { LucideAngularModule } from 'lucide-angular';
   `,
   styles: [``],
 })
-export class CartComponent implements OnChanges, OnInit {
+export class CartComponent implements OnInit {
   items: CartProduct[] = [];
   totalPrice = 0;
-  constructor(private CartService: CartService) {
-    this.items = this.CartService.getCartItems();
-  }
+  constructor(private CartService: CartService) {}
   ngOnInit(): void {
-    this.updateTotalPrice();
-  }
-  ngOnChanges(): void {}
-
-  updateTotalPrice() {
-    this.totalPrice = 0;
-    this.items.forEach((item) => {
-      this.totalPrice += item.price * item.quantity;
+    this.CartService.getItemsList().subscribe((itemList) => {
+      this.items = itemList;
+    });
+    this.CartService.getTotalPrice().subscribe((total) => {
+      this.totalPrice = total;
     });
   }
   removeItem({ itemID, itemSize }: { itemID: number; itemSize: string }) {
-    this.CartService.removeItem(itemID, itemSize);
-    this.items = this.CartService.getCartItems();
-    this.updateTotalPrice();
+    this.CartService.removeItem(itemID, itemSize).subscribe((itemList) => {
+      this.items = itemList;
+    });
+    this.CartService.getTotalPrice().subscribe((total) => {
+      this.totalPrice = total;
+    });
   }
 }
