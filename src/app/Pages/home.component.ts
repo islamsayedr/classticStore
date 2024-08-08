@@ -31,13 +31,15 @@ import { Subscription } from 'rxjs';
           <img
             [src]="currentAd.cover"
             alt="banner"
-            class="w-full flex object-cover sm:h-[500px] aspect-[12/7] rounded-lg"
+            class="w-full flex object-cover sm:h-[500px] aspect-[12/7] rounded-lg "
           />
-          <div class="flex p-2 gap-2 items-center justify-center ">
+          <div class="flex p-4 gap-2 items-center justify-center ">
             <div
               *ngFor="let _ of [].constructor(adsNum); let i = index"
-              class="flex p-1 bg-white rounded-full "
-              [ngClass]="{ 'bg-yellow-300': i === currentAd.id }"
+              class="flex p-1  bg-white rounded-full opacity-50 transition-all duration-300 ease-in-out"
+              [ngClass]="{
+                'bg-yellow-300 px-4 opacity-100': i === currentAd.id
+              }"
             ></div>
           </div>
           <!-- <Carousel /> -->
@@ -45,7 +47,7 @@ import { Subscription } from 'rxjs';
       </section>
       <section class="py-8">
         <div class="container m-auto">
-          <H2 text="المنتجات الاكثر طلبا"></H2>
+          <H2>المنتجات الاكثر طلبا</H2>
 
           <div
             class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 "
@@ -56,7 +58,7 @@ import { Subscription } from 'rxjs';
       </section>
       <section class="py-8">
         <div class="container m-auto">
-          <H2 text="لماذا نحن؟"></H2>
+          <H2>لماذا نحن؟</H2>
           <div class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-4 ">
             <div
               *ngFor="let item of whyUs"

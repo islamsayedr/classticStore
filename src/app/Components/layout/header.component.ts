@@ -26,7 +26,7 @@ import { GalleryThumbnails, LucideAngularModule } from 'lucide-angular';
         <lucide-icon name="Menu" [size]="24" [strokeWidth]="1.5"></lucide-icon>
       </span>
 
-      <a routerLink="/home" class="font-black text-xl">👖 كلاسيك ستور</a>
+      <a routerLink="/home" class="font-black text-xl">٩ كلاسيك</a>
 
       <div class="hidden md:flex gap-4">
         <a
@@ -50,7 +50,7 @@ import { GalleryThumbnails, LucideAngularModule } from 'lucide-angular';
             [hidden]="!(itemsNum > 0)"
           ></span>
         </a>
-        <button
+        <!-- <button
           (click)="login()"
           [hidden]="isUserLoged"
           class="h-[44px] px-3 bg-yellow-200 text-yellow-900 rounded-full "
@@ -63,7 +63,7 @@ import { GalleryThumbnails, LucideAngularModule } from 'lucide-angular';
           class="h-[44px] px-3 bg-red-200 text-yellow-900 rounded-full"
         >
           <lucide-icon name="LogOut" [size]="20"></lucide-icon>
-        </button>
+        </button> -->
       </div>
     </div>
   `,
