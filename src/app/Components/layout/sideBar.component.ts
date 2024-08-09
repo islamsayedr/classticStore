@@ -14,7 +14,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, NgFor, NgIf],
   template: `
-    <div class="fixed top-0 right-0 w-full h-[100vh] flex" *ngIf="isOpen">
+    <div class="fixed top-0 right-0 w-full h-[100vh] flex z-10" *ngIf="isOpen">
       <div class="w-[70%] h-full flex flex-col gap-2 pt-[64px]  bg-gray-800">
         <a
           *ngFor="let link of navLinks"

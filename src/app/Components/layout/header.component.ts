@@ -26,7 +26,10 @@ import { GalleryThumbnails, LucideAngularModule } from 'lucide-angular';
         <lucide-icon name="Menu" [size]="24" [strokeWidth]="1.5"></lucide-icon>
       </span>
 
-      <a routerLink="/home" class="font-black text-xl">٩ كلاسيك</a>
+      <a routerLink="/home" class="flex gap-1 items-center font-black text-2xl">
+        <img src="./logoIcon.svg" alt="logo" class="h-[28px] w-auto" />
+        كلاسيك</a
+      >
 
       <div class="hidden md:flex gap-4">
         <a
