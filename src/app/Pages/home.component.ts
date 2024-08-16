@@ -38,7 +38,7 @@ import { Subscription } from 'rxjs';
               *ngFor="let _ of [].constructor(adsNum); let i = index"
               class="flex p-1  bg-white rounded-full opacity-50 transition-all duration-300 ease-in-out"
               [ngClass]="{
-                'bg-yellow-300 px-4 opacity-100': i === currentAd.id
+                'bg-yellow-300 px-4 opacity-[100%] ': i === currentAd.id
               }"
             ></div>
           </div>
